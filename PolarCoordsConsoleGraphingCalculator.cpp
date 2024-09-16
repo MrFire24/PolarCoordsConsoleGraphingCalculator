@@ -3,9 +3,14 @@
 
 using namespace std;
 
-void gotoxy(int x, int y)
-{
-    printf("%c[%d;%df", 0x1B, y + 20, (int)(2 * (x + 20)));
+#define SIZE_X 30
+#define SIZE_Y 30
+
+#define goto(x,y) printf("%c[%d;%df", 0x1B, y, (int)x)
+
+void put(float x, float y, char symbol) {
+    goto((int)(2. * (x + SIZE_X / 2.)), (int)(y + SIZE_Y / 2.));
+    cout << symbol;
 }
 
 int main() {
@@ -13,12 +18,13 @@ int main() {
     float f = 0;// cout << "angle: "; cin >> f;
     cout << endl;
 
-    gotoxy(0, 0); cout << "0";
+    put(0, 0, '0');
 
     for (f = 0; f <= 360; f = f + 1)
     {
         r = 5. + 15. * sin(f / 57.3);
-        gotoxy((int)(r * cos(f / 57.3)), (int)(r * sin(f / 57.3))); cout << "x";
+        put((r * cos(f / 57.3)), (r * sin(f / 57.3)), 'x');
     }
-    gotoxy(-19, -20);
+    goto(0, SIZE_Y);
+    cin.ignore();
 }
