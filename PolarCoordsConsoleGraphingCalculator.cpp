@@ -38,7 +38,7 @@ void func() {
     static float rnd = 12.0;
     rnd += (rand() % 100 - 50.0) / 80. + (12.0 - rnd) / 250.;
     r = rnd;
-    */
+    //*/
 }
 
 int main() {
